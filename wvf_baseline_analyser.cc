@@ -29,13 +29,13 @@ bool wvf_baseline_analyser::is_initialized(){
   return  _initialized;
 }
 
-void wvf_baseline_analyser::print_waveform() {
-  std::cout << "Size : " << _waveform_.size() << std::endl;
-  for ( int i = 0; i < _waveform_.size(); i++ ) {
-    std::cout << _waveform_[i] << " ";
-  }
-  std::cout << std::endl;
-}
+// void wvf_baseline_analyser::print_waveform() {
+//   std::cout << "Size : " << _waveform_.size() << std::endl;
+//   for ( int i = 0; i < _waveform_.size(); i++ ) {
+//     std::cout << _waveform_[i] << " ";
+//   }
+//   std::cout << std::endl;
+// }
 
 double wvf_baseline_analyser::compute_baseline() {
   double pulse_baseline = -1;

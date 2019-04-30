@@ -61,6 +61,15 @@ int wvf_peak_info::get_pulse_end() {
   return _pulse_end;
 }
 
+// RESET
+
+void wvf_peak_info::reset() {
+  set_pulse_maximum(0); 
+  set_pulse_maximum_timestamp(0);
+  set_pulse_start(0);
+  set_pulse_end(0);
+}
+
 // VERIFICATOR
 
 void wvf_peak_info::verify_values() {

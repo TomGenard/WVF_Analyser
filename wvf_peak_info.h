@@ -19,6 +19,8 @@ class wvf_peak_info {
   int get_pulse_maximum_timestamp(void);
   int get_pulse_start(void);
   int get_pulse_end(void);
+
+  void reset(void);
   
   void verify_values(void);
 

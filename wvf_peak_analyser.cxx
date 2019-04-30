@@ -18,7 +18,9 @@ int main(void) {
   
   std::ifstream inFile;
   std::string file_path;
-  file_path = "wvf.data";
+  //file_path = "wvf.data";
+  std::cout << "Insert file path :" << std::endl;
+  std::cin >> file_path;
   
   std::ofstream myfile;
   inFile.open(file_path.c_str());
@@ -27,6 +29,13 @@ int main(void) {
   }
   inFile.close();
 
-  wvf_peak_analyser analyser(adc_values_array);
-  
+  wvf_peak_analyser analyser;
+  analyser.add_waveform(adc_values_array);
+  analyser.remove_baseline();
+  analyser.find_pulses();
+  analyser.find_all_max();
+  for ( int i = 0; i < analyser.get_number_peak() ; i++) {
+    std::cout << "===== PEAK N°" << i << " =====" << std::endl;
+    analyser.print_peak_info(i);
+  }
 }
