@@ -33,5 +33,5 @@ int main(void) {
   double pulse_baseline;
   //baseline.print_waveform();
   pulse_baseline = baseline.compute_baseline();
-  std::cout << "The pulse basleine of this signal is : " << pulse_baseline << std::endl;
+  std::cout << "The pulse baseline of this signal is : " << pulse_baseline << std::endl;
 }
