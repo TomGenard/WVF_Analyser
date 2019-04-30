@@ -18,6 +18,7 @@ int main(void) {
   int pulse_maximum_1 = -1, pulse_maximum_2 = -1;
   double pulse_baseline = -1;
   std::vector<int> adc_values_array;
+  double threshold = 0.3; // 0.3 by default
 
   std::cout << "Insert filepath :" << std::endl;
   std::cin >> file_path;
@@ -38,7 +39,8 @@ int main(void) {
   //========================================
 
   double pulse_maximum_1_timestamp = 0, pulse_maximum_2_timestamp = 0;
-
+  int pulse_1_below_threshold_timestamp = -1;
+ 
   // Compute the baseline of the waveform
   for ( int i = 0; i < adc_values_array.size(); i++ ) {
     if ( i < 100 ) {
@@ -69,8 +71,16 @@ int main(void) {
   
   pulse_maximum_1 = pulse_maximum_1 / 25.;
 
+  // Finding the point where the first pulse goes below the threshold
+  for ( int i = pulse_maximum_1_timestamp; i < adc_values_array.size(); i++ ) {
+    if ( adc_values_array[i] < ( threshold/2. ) * pulse_maximum_1 ) {
+      pulse_1_below_threshold_timestamp = i;
+      break;
+    }
+  }
+
   // Finding the second maximum
-  for ( int i = ( pulse_maximum_1_timestamp + 100 ); i < adc_values_array.size(); i++ ) { // The first signal takes way less than 100 timesteps to return to the baseline
+  for ( int i = pulse_1_below_threshold_timestamp; i < adc_values_array.size(); i++ ) { // The first signal takes way less than 100 timesteps to return to the baseline
     if ( adc_values_array[i] > pulse_maximum_2 ) {
       pulse_maximum_2 = adc_values_array[i];
       pulse_maximum_2_timestamp = i;
@@ -98,26 +108,26 @@ int main(void) {
       current_value = adc_values_array[i];
 
       if ( timestamp_first_pulse == -1 // -1 is the initial value, test if the value has already been set
-	   && current_value > 0.3 * pulse_maximum_1 ) // Test is we are in the rising period of the signal
+	   && current_value > threshold * pulse_maximum_1 ) // Test is we are in the rising period of the signal
 	{
 	if ( current_timestamp < pulse_maximum_1_timestamp ) {
 	  a = ( ( current_value - past_value ) / 1. ); // Divided by 1 because there is only one timestep between the two
 	  b = current_value - ( a * i );
 	  
-	  fitted_timestamp = ( 0.3 * pulse_maximum_1 - b ) / a;
+	  fitted_timestamp = ( threshold * pulse_maximum_1 - b ) / a;
 	  
 	  timestamp_first_pulse = fitted_timestamp;
 	}
       }
       else if ( timestamp_second_pulse == -1 // -1 is the initial value, test if the value has already been set
-		&& current_value > 0.3 * pulse_maximum_2 // Test is we are in the rising period of the signal
+		&& current_value > threshold * pulse_maximum_2 // Test is we are in the rising period of the signal
 		&& i > ( timestamp_first_pulse + 50 ) ) // Set to 100 to search a maximum beyond the first signal
 	{
 	if ( current_timestamp < pulse_maximum_2_timestamp ) {
 	  a = ( ( current_value - past_value ) / 1. ); // Divided by 1 because there is only one timestep between the two
 	  b = current_value - ( a * i );
 	  
-	  fitted_timestamp = ( 0.3 * pulse_maximum_2 - b ) / a;
+	  fitted_timestamp = ( threshold * pulse_maximum_2 - b ) / a;
 	  
 	  timestamp_second_pulse = fitted_timestamp;
 	}
