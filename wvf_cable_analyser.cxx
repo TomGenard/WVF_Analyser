@@ -15,9 +15,9 @@
 
 int main(void) {
   std::vector<int> adc_values_array;
+  std::ifstream inFile;
   int adc_value = -1;
   
-  std::ifstream inFile;
   std::string file_path;
   //file_path = "wvf.data";
   std::cout << "Insert file path :" << std::endl;
@@ -42,14 +42,17 @@ int main(void) {
   double travel_time  = 0;        // In steps
   wvf_cable_analyser cable_analyser;
   wvf_peak_info current_peak_info, ref_peak_info;
+  std::ofstream data_file;
   
+  data_file.open("peak_data.data");
   for ( int i = 0; i < analyser.get_number_peak() ; i++) {
     std::cout << "===== PEAK N°" << i << " =====" << std::endl;
     analyser.print_peak_info(i);
-
+    current_peak_info = analyser.get_peak_info(i);
+    data_file << current_peak_info.get_pulse_start() << " " << current_peak_info.get_pulse_end() << " " << current_peak_info.get_pulse_maximum() << " " << current_peak_info.get_pulse_maximum_timestamp() << "\n";
+    
     if ( i > 0 ) {
       ref_peak_info = analyser.get_peak_info(0);
-      current_peak_info = analyser.get_peak_info(i);
       
       travel_time = current_peak_info.get_pulse_start() - ref_peak_info.get_pulse_start();
       std::cout << "     =======" << std::endl;
@@ -60,5 +63,6 @@ int main(void) {
       std::cout << "Signal speed : " << signal_speed << std::endl;
     }
   }
+  data_file.close();
   std::cout << " " << std::endl;
 }
