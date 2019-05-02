@@ -19,45 +19,46 @@ wvf_peak_info::wvf_peak_info(int pulse_maximum_, int pulse_maximum_timestamp_, i
   set_pulse_maximum_timestamp(pulse_maximum_timestamp_);
   set_pulse_start(pulse_start_);
   set_pulse_end(pulse_end_);
+  verify_values();
 }
 
 // SETTERS
 
-void wvf_peak_info::set_pulse_maximum(int pulse_maximum_) {
+void wvf_peak_info::set_pulse_maximum(double pulse_maximum_) {
   _pulse_maximum = pulse_maximum_;
   _info_validated = false;
 }
 
-void wvf_peak_info::set_pulse_maximum_timestamp(int pulse_maximum_timestamp_) {
+void wvf_peak_info::set_pulse_maximum_timestamp(double pulse_maximum_timestamp_) {
   _pulse_maximum_timestamp = pulse_maximum_timestamp_;
   _info_validated = false;
 }
 
-void wvf_peak_info::set_pulse_start(int pulse_start_) {
+void wvf_peak_info::set_pulse_start(double pulse_start_) {
   _pulse_start = pulse_start_;
   _info_validated = false;
 }
 
-void wvf_peak_info::set_pulse_end(int pulse_end_) {
+void wvf_peak_info::set_pulse_end(double pulse_end_) {
   _pulse_end = pulse_end_;
   _info_validated = false;
 }
 
 // GETTERS
 
-int wvf_peak_info::get_pulse_maximum() {
+double wvf_peak_info::get_pulse_maximum() {
   return _pulse_maximum;
 }
 
-int wvf_peak_info::get_pulse_maximum_timestamp() {
+double wvf_peak_info::get_pulse_maximum_timestamp() {
   return _pulse_maximum_timestamp;
 }
 
-int wvf_peak_info::get_pulse_start() {
+double wvf_peak_info::get_pulse_start() {
   return _pulse_start;
 }
 
-int wvf_peak_info::get_pulse_end() {
+double wvf_peak_info::get_pulse_end() {
   return _pulse_end;
 }
 

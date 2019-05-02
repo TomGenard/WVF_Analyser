@@ -2,7 +2,7 @@
 // WAVEFORM (WVF) PEAK ANALYSER
 // Finds the maximum point of a signal (waveform)
 // 
-// Tom Génard - Last Modified : 30.04.2019
+// Tom Génard - Last Modified : 02.05.2019
 //================================================================
 
 #include <cstdlib>

@@ -22,10 +22,12 @@ class wvf_peak_analyser {
 
   void remove_baseline(void);
   void find_pulses(void);
-  int pulse_global_max_finder(void);
-  wvf_peak_info pulse_max_finder(wvf_peak_info);
+  int find_pulse_global_max(void);
+  wvf_peak_info find_pulse_max(wvf_peak_info);
+  wvf_peak_info find_square_pulse_max(wvf_peak_info);
   void find_all_max(void);
   int get_number_peak(void);
+  wvf_peak_info get_peak_info(int);
   void print_peak_info(int);
   /* std::vector<wvf_peak_info> find_peaks(void); */
 
