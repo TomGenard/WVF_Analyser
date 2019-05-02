@@ -58,7 +58,7 @@ int main(void) {
       cable_analyser.set_cable_length(cable_length);
       signal_speed = cable_analyser.compute_signal_speed(travel_time, time_step);
       std::cout << "Signal speed : " << signal_speed << std::endl;
-      std::cout << " " << std::endl;
     }
   }
+  std::cout << " " << std::endl;
 }
