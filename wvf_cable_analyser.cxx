@@ -50,13 +50,15 @@ int main(void) {
     if ( i > 0 ) {
       ref_peak_info = analyser.get_peak_info(0);
       current_peak_info = analyser.get_peak_info(i);
-  
+      
       travel_time = current_peak_info.get_pulse_start() - ref_peak_info.get_pulse_start();
+      std::cout << "     =======" << std::endl;
       std::cout << "Time between this pulse and the original pulse : " << travel_time << std::endl;
       
       cable_analyser.set_cable_length(cable_length);
       signal_speed = cable_analyser.compute_signal_speed(travel_time, time_step);
       std::cout << "Signal speed : " << signal_speed << std::endl;
+      std::cout << " " << std::endl;
     }
   }
 }
