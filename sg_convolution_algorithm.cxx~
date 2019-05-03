@@ -1,0 +1,33 @@
+//================================================================
+// SAVITZKY-GOLAY (SG) CONVOLUTION ALGORITHM
+// Smoothen a waveform using the Savitzky-Golay algorithm
+// 
+// Tom Génard - Last modified : 03.05.2019
+//================================================================
+
+#include <cstdlib>
+#include <vector>
+#include <iostream>
+#include <fstream>
+
+#include "wvf_convolution_algorithm.h"
+
+int main(void) {
+  std::vector<double> adc_values_array;
+  int adc_value = -1;
+  
+  std::ifstream inFile;
+  std::string file_path;
+  //file_path = "wvf.data";
+  std::cout << "Insert file path :" << std::endl;
+  std::cin >> file_path;
+  
+  std::ofstream myfile;
+  inFile.open(file_path.c_str());
+  while (inFile >> adc_value) {
+    adc_values_array.push_back(adc_value);
+  }
+  inFile.close();
+
+  
+}

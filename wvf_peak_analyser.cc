@@ -170,6 +170,59 @@ wvf_peak_info wvf_peak_analyser::find_square_pulse_max(wvf_peak_info peak_info_)
   return peak_info_;
 }
 
+// double wvf_peak_analyser::find_square_pulse_start(wvf_peak_info peak_info_) {
+//   // Here, we'll do an interpolation of two lines, defined by the rising slope and the baseline of the signal
+//   // We use two line_2d for that, each defined by two vector_2d that determine their verticies
+//   // The computation of the crosspoint is made here, but the lines slopes and origin point are calculated in the line_2d class
+
+//   double a_pulse_start = -1;
+
+//   int time_start, time_end;
+//   int total_time;
+  
+//   int rising_start, rising_end;
+//   int rising_start_value, rising_end_value;
+//   int baseline_start, baseline_end;
+//   int baseline_start_value, baseline_end_value;
+  
+//   time_start = peak_info_.get_pulse_start();
+//   time_end   = peak_info_.get_pulse_end();
+
+//   total_time = time_end - time_start;
+
+//   rising_start       = (int) ( 0.00 * total_time ) + time_start;
+//   rising_start_value = _waveform_[rising_start];
+//   rising_end         = (int) ( 0.1 * total_time ) + time_start;
+//   rising_end_value   = _waveform_[rising_end];
+  
+//   wvf_baseline_analyser baseline_analyser;
+//   baseline_analyser.add_waveform(_waveform_);
+
+//   double pulse_baseline;
+//   pulse_baseline = baseline_analyser.compute_baseline();
+  
+//   baseline_start       = time_start - 100;
+//   baseline_start_value = pulse_baseline;
+//   baseline_end         = time_start - 50;
+//   baseline_end_value   = pulse_baseline;
+  
+//   vector_2d vector_1;
+//   vector_1.add_vector_2d(rising_start, rising_start_value);
+//   vector_2d vector_2;
+//   vector_2.add_vector_2d(rising_end, rising_end_value);
+//   vector_2d vector_3;
+//   vector_3.add_vector_2d(baseline_start, baseline_start_value);
+//   vector_2d vector_4;
+//   vector_4.add_vector_2d(baseline_end, baseline_end_value);
+  
+//   line_2d line_2d_first(vector_1,vector_2);
+//   line_2d line_2d_second(vector_3,vector_4);
+
+//   a_pulse_start = ( line_2d_second.get_origin() - line_2d_first.get_origin() ) / ( line_2d_first.get_slope() - line_2d_second.get_slope() );
+
+//   return a_pulse_start;
+// }
+
 void wvf_peak_analyser::find_all_max() {
   wvf_peak_info tmp_peak_info;
 

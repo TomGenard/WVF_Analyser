@@ -1,0 +1,12 @@
+#include <cstdlib>
+
+#include <gsl/gsl_fit.h>
+
+int main(void) {
+  int error_code = EXIT_SUCCESS;
+  
+  return error_code;
+}
+
+
+  

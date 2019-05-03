@@ -1,0 +1,6 @@
+//================================================================
+// SAVITZKY-GOLAY (SG) CONVOLUTION ALGORITHM
+// Smoothen a waveform using the Savitzky-Golay algorithm
+// 
+// Tom Génard - Last modified : 03.05.2019
+//================================================================

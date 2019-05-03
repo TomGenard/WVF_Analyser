@@ -1,0 +1,4 @@
+
+
+wvf_cable_analyser : wvf_cable_analyser.cxx
+	$(CXX) $< -o $@

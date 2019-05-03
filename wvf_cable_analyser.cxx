@@ -49,7 +49,7 @@ int main(void) {
     std::cout << "===== PEAK N°" << i << " =====" << std::endl;
     analyser.print_peak_info(i);
     current_peak_info = analyser.get_peak_info(i);
-    data_file << current_peak_info.get_pulse_start() << " " << current_peak_info.get_pulse_end() << " " << current_peak_info.get_pulse_maximum() << " " << current_peak_info.get_pulse_maximum_timestamp() << "\n";
+    data_file << i << " " << current_peak_info.get_pulse_start() << " " << current_peak_info.get_pulse_end() << " " << current_peak_info.get_pulse_maximum() << " " << current_peak_info.get_pulse_maximum_timestamp() << "\n";
     
     if ( i > 0 ) {
       ref_peak_info = analyser.get_peak_info(0);
